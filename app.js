@@ -70,7 +70,7 @@ const userMainData = mongoose.model('userMainData', {
     app_regdate: String
 });
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 80;
 
 var instance = new Razorpay({
     key_id: 'rzp_live_zXAILo1DS6ulat',
