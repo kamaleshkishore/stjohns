@@ -1,0 +1,139 @@
+
+
+.video-class {
+    margin-top: 13% !important
+}
+
+@media screen and (max-width: 600px) {
+    .container-logo .UT-logo {
+        left: 0% !important;
+        margin: 0 0 0 0px;
+        width: 264px;
+        height: 42px;
+        top: 3px;
+        float: left;
+    }
+
+    p.history {
+        font-size: 1em !important;
+        line-height: 1.25rem !important;
+    }
+
+    .hideme {
+        display: none !important;
+    }
+
+    .video-class {
+        margin-top: 0% !important
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .front .homepage-hero__headline {
+    font-size: 45px!important;
+}
+
+    .video-class {
+        margin-top: 0% !important
+    }
+
+    .container-logo .UT-logo {
+        left: 0% !important;
+    }
+
+    .hideme {
+        display: none !important;
+    }
+
+    .container-footer .helpful-link-item {
+        padding-bottom: 0px !important;
+    }
+}
+
+.justifycontent {
+    text-align: justify !important;
+}
+
+@media only screen and (min-width: 64.063em) {
+    .differentiator .content-wrapper h2 {
+        font-size: 2.5rem !important;
+        line-height: 2.5rem !important;
+    }
+}
+
+.container-nav .nav-link.nav-link-custom:before {
+    font-family: "UT_icons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "";
+    font-size: 0.625rem;
+    position: absolute;
+    right: 15px;
+}
+
+@media only screen and (min-width: 64.063em) {
+    .container-logo .UT-logo {
+        width: 270px !important;
+    }
+}
+
+@media only screen and (min-width: 40.063em) {
+    .front .homepage-hero__headline {
+        font-size: 25px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        letter-spacing: 1px !important;
+    }
+
+    #ut-intro h2.section-title {
+        font-size: 36px !important;
+        margin-bottom: 0px;
+    }
+}
+
+@media only screen and (min-width: 900px){
+/*    .row-custom{
+        width: 85%!important;
+    }*/
+    .aboutsection{
+        font-size: 18px!important;
+    }
+    .custom-font{
+        font-size: 1.4rem!important;
+    }
+}
+@keyframes glowing {
+    0% { background-color: #ffffff; box-shadow: 0 0 5px #ffffff; color: #192f59; }
+    50% { background-color: #ffffff; box-shadow: 0 0 5px #ffffff; color: #192f59; }
+    100% { background-color: #ffffff; box-shadow: 0 0 5px #ffffff; color: #192f59; }
+}
+.apply-button {
+    animation: glowing 2300ms infinite;
+    
+}
+
+@media only screen and (min-width: 1200px){
+    /*    .row-custom{
+            width: 85%!important;
+        }*/
+        .aboutsection{
+            font-size: 18px!important;
+        }
+        .custom-font{
+            font-size: 1.125rem!important;
+        }
+    }
+
+
+@media screen and (min-width:600px){
+    .whatsapp-header{
+        background-color: #192f59!important;
+    }
+}

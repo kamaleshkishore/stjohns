@@ -1,0 +1,86 @@
+<%- include('partials/header') %>
+<style>
+#downloadlink{
+    display: none;}
+       #downloadlink {
+    color: white;
+    border: 1px solid white;
+    padding: 2%;
+    border-radius: 40px;
+    text-decoration: none;
+    width: 65%;
+    text-align: center;
+}
+    @media screen and (min-width:600px){
+       #downloadlink {
+    color: white;
+    border: 1px solid white;
+    padding: 2%;
+    border-radius: 40px;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+}
+    }
+    button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+    color: white;
+}
+    </style>
+    <h5 id="paymentstatus" style="color: white;font-size: 1.2em;text-align: center;">Pay Registration fees of ₹ 520/- (Five Hundred Fifty Only) to complete the registration process.</h5>
+    <p style="font-size: 1.0rem; text-align: center;">Available payment options are: Debit Card, Credit Card, NetBanking, UPI & Wallet </p>
+    <h5 id="payment_id" style="color: white;text-align: center;"></h5>
+    <div class="controls" style="text-align: center;"><button id="rzp-button1" style="text-align: center;    border-radius: 5px;">Pay</button></div>
+    <a href="" id="downloadlink" target="_blank" style="color: #333366;text-align: center; margin: 0 auto; border: 1px solid white; padding: 2%; border-radius: 40px;text-decoration: none;background: white;"></a>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        var options = {
+            key: "rzp_live_zXAILo1DS6ulat",
+            amount: "52000",
+            currency: "INR",
+            name: "St.John's College",
+            description: "St.John's college of nursing",
+            image: "/sites/all/themes/utexas/img/general/logoanimate.png",
+            order_id: "<%= order_id%>",
+            handler: function(response) {
+                if (response.razorpay_payment_id) {
+                    paymentstatus;
+                    document.getElementById("rzp-button1").style.display = "none";
+                    document.getElementById("paymentstatus").innerHTML = "Payment Done";
+                    document.getElementById("payment_id").innerHTML = 'Payment Id: '+
+                        response.razorpay_payment_id;
+                    document.getElementById("downloadlink").href =
+                        "/downloadapp/" + response.razorpay_payment_id;
+                    document.getElementById("downloadlink").innerHTML =
+                        "Download Application";
+                    document.getElementById('downloadlink').style.display="block";
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", "/downloadapp/"+response.razorpay_payment_id, false );
+                    xmlHttp.send( null );
+                    return xmlHttp.responseText;
+                    
+                } else {
+                    console.log("error")
+                }
+            },
+            prefill: {
+                name: "<%= userdata.app_name %>",
+                email: "<%= userdata.app_emailaddress %>",
+                contact: "<%= userdata.app_mobileno %>"
+            },
+            notes: {
+                address: "note value"
+            },
+            theme: {
+                color: "#F37254"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        document.getElementById("rzp-button1").onclick = function(e) {
+            rzp1.open();
+            e.preventDefault();
+        };
+    </script>
+    <%- include('partials/footer') %>

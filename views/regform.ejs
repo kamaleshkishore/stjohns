@@ -1,0 +1,410 @@
+<%- include('partials/header') %>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<style>
+    .container-custom {
+        width: 100%;
+        margin: 50px auto;
+        box-sizing: border-box;
+    }
+
+    input,
+    select {
+        width: 70% !important;
+        float: right;
+    }
+
+    label {
+        float: left;
+    }
+
+    label {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+
+    ​ .block {
+        padding: 1em;
+    }
+
+    .col-custom label,
+    .col-custom input {
+        width: 100% !important;
+    }
+
+    @media screen and (max-width: 600px) {
+
+        input,
+        select {
+            width: 100% !important;
+            float: right;
+        }
+    }
+
+    input[type="file"] {
+        color: white;
+    }
+
+    #ut-intro {
+        padding-top: 0px;
+    }
+
+    td,
+    th {
+        padding: 0;
+        width: 1%;
+    }
+
+    @media screen and (min-width: 600px) {
+
+        .row-custom {
+            width: 132px !important;
+            float: right !important;
+        }
+    }
+
+    .input-border {
+        border-radius: 25px !important;
+    }
+
+    label {
+        font-weight: bold !important;
+    }
+
+    @media screen and (max-width:600px) {
+        .custom-upload {
+            width: 100% !important;
+        }
+
+        .qualification-table {
+            width: 820px;
+        }
+    }
+
+    .academic-subjects {
+        font-size: 20px !important;
+        margin-bottom: 7px !important;
+        color: black !important;
+    }
+
+    .academic-input {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+</style>
+<div class="container-custom">
+    <div class="error"></div>
+    <p>
+        Kindly fill the form to register.
+    </p>
+    <form method="POST" action="/fill-registration" enctype="multipart/form-data"
+        onsubmit="return confirm('Kindly verify the details before submitting , OK to proceed');">
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_uploadfile">Upload Photo</label>
+                <label class="custom-upload" style="font-size:.9em;margin-left:5px; width: 50%;">Passport Size
+                    (3.5cmx4.5cm - Max 512kb)</label>
+            </div>
+            <div class="col-75">
+                <input type="file" id="reg_uploadfile" name="file" onchange="GetFileSize()" />
+            </div>
+            <p id="size"></p>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_name">Name of the Applicant</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_name" name="reg_name" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_course">Course</label>
+            </div>
+            <div class="col-75">
+                <select class="input-border" id="reg_course" name="reg_course" style="margin-bottom: 20px;"
+                    required>
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="Bsc Nursing">Bsc Nursing</option>
+                    <option value="Diploma Nursing">Diploma Nursing</option>
+                    <option value="B.Ed">B.Ed</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" style="display: none;">
+            <div class="col-25">
+                <label for="reg_mobileno">Mobile Number</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_mobileno" name="reg_mobileno" value="<%= mobileno%>"
+                    readonly />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_fathername">Father Name</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_fathername" name="reg_fathername" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_mothername">Mother Name</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_mothername" name="reg_mothername" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_fatheroccupation">Father Occupation</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_fatheroccupation" name="reg_fatheroccupation"
+                    required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_motheroccupation">Mother Occupation</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_motheroccupation" name="reg_motheroccupation"
+                    required />
+            </div>
+        </div>
+        <div class=" row">
+            <div class="col-25">
+                <label for="reg_presentaddress">Address for Communication </label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_presentaddress" name="reg_presentaddress" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_emailaddress">Email Address</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="email" id="reg_emailaddress" name="reg_emailaddress" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_birth">Date of Birth</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="date" id="reg_birth" name="reg_birth" min="1985-03-01"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_aadharno">Aadhar No</label>
+            </div>
+            <div class="col-75">
+                <input class="input-border" type="text" id="reg_aadharno" name="reg_aadharno" value="" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_religion">Religion</label>
+            </div>
+            <div class="col-75">
+                <select class="input-border" id="reg_religion" name="reg_religion" style="margin-bottom: 20px;"
+                    required>
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="HINDU">HINDU</option>
+                    <option value="CHRISTIAN">CHRISTIAN</option>
+                    <option value="MUSLIM">MUSLIM</option>
+                    <option value="OTHER">OTHER</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_caste">Community</label>
+            </div>
+            <div class="col-75">
+                <select class="input-border" id="reg_caste" name="reg_caste" style="margin-bottom: 20px;" required>
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="SC/ST">SC/ST</option>
+                    <option value="BC">BC</option>
+                    <option value="MBC">MBC</option>
+                    <option value="FC">FC</option>
+                    <option value="OC">OC</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_nationality">Nationality</label>
+            </div>
+            <div class="col-75">
+                <select class="input-border" id="reg_nationality" name="reg_nationality" style="margin-bottom: 20px;"
+                    required>
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="INDIAN">INDIAN</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="reg_maritalstatus">Marital Status</label>
+            </div>
+            <div class="col-75">
+                <select class="input-border" id="reg_maritalstatus" name="reg_maritalstatus"
+                    style="margin-bottom: 20px;" required>
+                    <option value="" disabled selected>Select your option</option>
+                    <option value="SINGLE">SINGLE</option>
+                    <option value="MARRIED">MARRIED</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="academics">Academic Qualification</label>
+            </div>
+        </div>
+        <div class="row" style="overflow: scroll;">
+            <table style="background-color: white;" class="qualification-table">
+                <tbody>
+                    <tr>
+                        <th style="border-right: 1px solid gray;text-align: center;">Exam Passed</th>
+                        <th style="border-right: 1px solid gray;text-align: center;">Year of Passing</th>
+                        <th style="border-right: 1px solid gray;text-align: center;">Name of the school</th>
+                        <th style="border-right: 1px solid gray;text-align: center;">Board</th>
+                        <th style="border-right: 1px solid gray;text-align: center;">Subjects</th>
+                        <th style="border-right: 1px solid gray;text-align: center;">Marks obtained</th>
+                    </tr>
+                    <tr>
+                        <td style="border-right: 1px solid gray;"><textarea
+                                style="outline: linen; border: 0px solid transparent;" id="" cols="30" rows="12"
+                                name="reg_exam_passed" required></textarea></td>
+                        <td style="border-right: 1px solid gray;"><textarea
+                                style="outline: linen; border: 0px solid transparent;" id="" cols="30" rows="12"
+                                name="reg_yearofpassing" required></textarea></td>
+                        <td style="border-right: 1px solid gray; min-width: 220px;"><textarea
+                                style="outline: linen; border: 0px solid transparent;" id="" cols="30" rows="12"
+                                name="reg_schoolname" required></textarea></td>
+                        <td style="border-right: 1px solid gray;"><textarea
+                                style="outline: linen; border: 0px solid transparent;" id="" cols="30" rows="12"
+                                name="reg_board" required></textarea></td>
+                        <td style="border-right: 1px solid gray;">
+                            <input class="academic-input" type="text" value="English" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Physics" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Chemistry" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Biology" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Botany" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Zoology" readonly
+                                style="background-color: white;" />
+                            <input class="academic-input" type="text" value="Total" readonly
+                                style="background-color: white;font-weight: bold;" />
+
+                        </td>
+                        <td style="border-right: 1px solid gray;">
+                            <input class="academic-input" name="reg_marks_english" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_physics" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_chemistry" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_biology" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_botany" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_zoology" type="text" value="" required/>
+                            <input class="academic-input" name="reg_marks_total" type="text" value="" required/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p id="imageerror" style="margin-bottom: 15px;"></p>
+        <div class="row row-custom">
+            <input type="submit" class="btnSubmit" style="border: 2px solid white; border-radius: 3px; color: white;">
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script>
+    $(document).ready(
+        function () {
+            $('#imageerror').append('<span>Upload image to Submit</span>')
+            $('input:submit').attr('disabled', true);
+            $('input:file').change(
+                function () {
+                    if ($(this).val()) {
+                        $('#imageerror').empty();
+                        $('input:submit').removeAttr('disabled');
+
+                    }
+                    else {
+                        $('#imageerror').append('<span>Upload image to Submit</span>')
+                        $('input:submit').attr('disabled', true);
+                    }
+                });
+        }
+    );
+</script>
+<script>
+    if ($("input[name=reg_marks_english]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_physics]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_chemistry]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_biology]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_botany]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_zoology]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    }
+    else if ($("input[name=reg_marks_total]").val() == ""){
+         $('input:submit').attr('disabled', true);
+    } else {
+        $('input:submit').removeAttr('disabled');
+    }
+</script>
+
+<script>
+    function validate(form) {
+        if (!valid) {
+            alert('Please correct the errors in the form!');
+            return false;
+        }
+        else {
+            return confirm('Do you really want to submit the form? Have you entered all the fields');
+        }
+    }
+</script>
+<script>
+
+    function GetFileSize() {
+        var fi = document.getElementById('reg_uploadfile'); // GET THE FILE INPUT.
+
+        // VALIDATE OR CHECK IF ANY FILE IS SELECTED.
+        if (fi.files.length > 0) {
+            // RUN A LOOP TO CHECK EACH SELECTED FILE.
+            for (var i = 0; i <= fi.files.length - 1; i++) {
+
+                var fsize = fi.files.item(i).size;      // THE SIZE OF THE FILE.
+                document.getElementById('size').innerHTML = Math.round((fsize / 1024)) + '</b> KB'
+                if (Math.round((fsize / 1024)) > 512) {
+                    alert("Maximux image file size allowed 512 KB")
+                    document.getElementById('reg_uploadfile').value = '';
+                    document.getElementById('size').innerHTML = ''
+                }
+            }
+        }
+    }
+</script>
+<form onsubmit="return validate(this);">
+    <%- include('partials/footer') %>

@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <div class="container-custom">
+        <form id="frm-mobile-verification" method="POST" action="\downloadotpvalidation">
+            <div class="form-row">
+                <label><%= status %></label>
+            </div>
+
+            <div class="form-row">
+                <input type="number" id="mobileOtp" name="otpvalidationno" class="form-input" placeholder="Enter the OTP" />
+            </div>
+            <div class="row">
+                <input id="verify" type="submit" class="btnVerify" value="Verify" style="border: 2px solid white; border-radius: 3px; color: white;" />
+            </div>
+            <a href="/"><p style="margin: 0 atuto; font-size: 1em;margin-top: 5%;">Resend OTP or Change number</p></a>
+            
+        </form>
+    </div>
+    <%- include('partials/footer') %>

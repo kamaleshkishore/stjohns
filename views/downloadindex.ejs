@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <style>
+        #btnSubmit {
+            background: white;
+            color: black;
+            font-weight: bold !important;
+        }
+    </style>
+    <div class="container-custom">
+        <div class="error"></div>
+        <form id="frm-mobile-verification" method="POST" action="/download">
+            <div class="form-heading">Enter your registered mobile number</div>
+
+            <div class="form-row">
+                <input type="text" id="mobile" name="phoneno" required title="number" class="form-input" placeholder="Enter the 10 digit mobile"/>
+                <input type="text" id="regno" name="regno" required title="regno" class="form-input" placeholder="Enter the Application Number" />
+                <input type="date"  min="1985-03-01" max="2003-12-31"  id="dob" name="dob" required  title="dob" class="form-input" placeholder="Select your DOB" />
+            </div>
+
+            <input type="submit" id="btnSubmit" class="btnSubmit" value="Download Application" style="border: 2px solid white; border-radius: 3px;" />
+        </form>
+        <a href="/" style="color: white;padding-top: 3%;"><p style="margin-top: 3%;font-size: 0.8625rem; margin-bottom: 0px;"></p><div style="color: rgb(51, 51, 102); text-align: center; margin: 0px auto; border: 1px solid white; padding: 2%; border-radius: 40px; text-decoration: none; background: white;padding: 5px 15px; display: block;">Go Back</div><p></p></a>
+    </div>
+    <script>
+        // var input = document.querySelector("[name=phoneno]");
+        // var patt = new RegExp(input.getAttribute("pattern"));
+        // input.oninput = function(event) {
+        //     if (patt.test(this.value)) {
+        //         document.querySelector("#btnSubmit").disabled = false;
+        //         document.querySelector("#btnSubmit").style.backgroundColor = "#4caf50";
+        //         document.querySelector("#btnSubmit").style.color = "white";
+        //     } else {
+        //         document.querySelector("#btnSubmit").disabled = true;
+        //         document.querySelector("#btnSubmit").style.backgroundColor = "white";
+        //         document.querySelector("#btnSubmit").style.color = "black";
+        //     }
+        // };
+    </script>
+    <%- include('partials/footer') %>

@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <style>
+        #btnSubmit {
+            background: white;
+            color: black;
+            font-weight: bold !important;
+        }
+    </style>
+    <div class="container-custom">
+        <div class="error"></div>
+        <form id="frm-mobile-verification" method="POST" action="/registration">
+            <div class="form-heading">Register with your mobile number</div>
+
+            <div class="form-row">
+                <input type="text" id="mobile" name="phoneno" required pattern="(?=.*[0-9]).{10}" title="Enter the 10 digit mobile" class="form-input" placeholder="Enter the 10 digit mobile" />
+            </div>
+
+            <input type="submit" id="btnSubmit" class="btnSubmit disbled" value="Start Registration" disabled="disabled" style="border: 2px solid white; border-radius: 3px;" />
+            <p style="margin-top: 5%;font-size: 1.2em;margin-bottom: 0px;">or</p>
+            <p style="font-size: 1.2em;margin-bottom: 0px;">Already registered?</p> 
+            <a href="/download" style="color: white;padding-top: 3%;"><p style="margin-top: 3%;font-size: 0.8625rem; margin-bottom: 0px;"><div style="color: rgb(51, 51, 102); text-align: center; margin: 0px auto; border: 1px solid white; padding: 2%; border-radius: 40px; text-decoration: none; background: white;padding: 5px 15px; display: block;">Download from here</div></p></a>
+        </form>
+    </div>
+    <script>
+        var input = document.querySelector("[name=phoneno]");
+        var patt = new RegExp(input.getAttribute("pattern"));
+        input.oninput = function(event) {
+            if (patt.test(this.value)) {
+                document.querySelector("#btnSubmit").disabled = false;
+                document.querySelector("#btnSubmit").style.backgroundColor = "#4caf50";
+                document.querySelector("#btnSubmit").style.color = "white";
+            } else {
+                document.querySelector("#btnSubmit").disabled = true;
+                document.querySelector("#btnSubmit").style.backgroundColor = "white";
+                document.querySelector("#btnSubmit").style.color = "black";
+            }
+        };
+    </script>
+    <%- include('partials/footer') %>

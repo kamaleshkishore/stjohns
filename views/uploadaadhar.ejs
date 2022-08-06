@@ -1,0 +1,122 @@
+<%- include('partials/header') %>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <style>
+        .container-custom {
+            width: 100%;
+            margin: 50px auto;
+            box-sizing: border-box;
+        }
+        
+        input {
+            width: 70% !important;
+            float: right;
+        }
+        
+        label {
+            float: left;
+        }
+        
+        .block {
+            padding: 1em;
+        }
+    @media screen and (min-width: 600px){
+        
+    .block-custom{
+    width: 162px!important;
+    float: right!important;
+}
+    }
+    input[type="file"] {
+    color: white;
+}
+    .btnSubmit {
+    background: #4cb7ff;
+    padding: 8px 20px;
+    border: #47abef 1px solid;
+    border-radius: 3px;
+    width: 100%;
+    color: #fff;
+}
+label{
+    font-weight: bold;
+}
+@media screen and (max-width: 600px){
+    input, label{
+        width: 100%!important;
+    }
+}
+    </style>
+    <div class="container-custom">
+        <div class="error"></div>
+        <p>
+            Kindly upload aadhar and details to proceed registration
+        </p>
+        <form method="POST" action="/fill-aadhar" enctype="multipart/form-data">
+            
+            <div class="row" style="display: none;">
+                <div class="col-25">
+                    <label for="reg_tempno">Temp Reg No</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="reg_tempno" value="<%= usertempreg%>" name="reg_tempno" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="reg_aadharno" style="color: white;">Enter your aadhar no:</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="reg_aadharno" style="border-radius: 25px;" name="reg_aadharno" required pattern="(\d{12})|(^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$)" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="reg_uploadfile" style="color: white;">Upload Aadhar</label>
+                </div>
+                <div class="col-75">
+                    <label style="font-size: .9em; margin-left: 5px; width: 71%; text-align: center; color: white;">Scaned Aadhar Photo - Max 1024kb or 1MB)</label>
+
+                    <input type="file" id="reg_uploadfile" name="myFile" onchange="Filevalidation()" />
+                </div>
+            </div>
+            <div id="imageerror" style="margin-bottom: 15px;color: white;font-size: 1.5625rem;"></div>
+            <div class="block block-custom">
+                <input type="submit" class="btnSubmit" style="border: 2px solid white; border-radius: 3px; color: white;">
+            </div>
+        </form>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+        <script>
+            $(document).ready(
+                function () {
+                    $('#imageerror').append('<span>Upload Aadhar to Submit</span>')
+                    $('input:submit').attr('disabled', true);
+                    $('input:file').change(
+                        function () {
+                            if ($(this).val()) {
+                                $('#imageerror').empty();
+                                $('input:submit').removeAttr('disabled');
+        
+                            }
+                            else {
+                                $('#imageerror').append('<span>Upload image to Submit</span>')
+                                $('input:submit').attr('disabled', true);
+                            }
+                        });
+                }
+            );
+        </script>
+        <script>
+            var input = document.querySelector("[name=reg_aadharno]");
+            var patt = new RegExp(input.getAttribute("pattern"));
+            input.oninput = function(event) {
+                if (patt.test(this.value)) {
+                    document.querySelector("#btnSubmit").disabled = false;
+                    document.querySelector("#btnSubmit").style.backgroundColor = "#4caf50";
+                    document.querySelector("#btnSubmit").style.color = "white";
+                } else {
+                    document.querySelector("#btnSubmit").disabled = true;
+                }
+            };
+        </script>
+    </div>
+    <%- include('partials/footer') %>
