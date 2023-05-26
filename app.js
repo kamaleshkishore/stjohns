@@ -210,7 +210,7 @@ app.post('/fill-registration', upload.single('file'), (req, res) => {
 app.get('/payment/:reg_tempno', (req, res) => {
 
     var options = {
-        amount: 75000,
+        amount: 100,
         currency: "INR",
         receipt: req.params.reg_tempno,
         payment_capture: '0'
@@ -368,7 +368,7 @@ app.get('/downloadapp/:pay_id', (req, res) => {
                                             from: 'cheersbyenotifications@gmail.com',
                                             to: 'drvimal0605@gmail.com',
                                             subject: 'Application',
-                                            text: '2020',
+                                            text: '2023',
                                             attachments: [
                                                 {   // file on disk as an attachment
                                                     filename: 'Application.pdf',
