@@ -210,7 +210,7 @@ app.post('/fill-registration', upload.single('file'), (req, res) => {
 app.get('/payment/:reg_tempno', (req, res) => {
 
     var options = {
-        amount: 75000,
+        amount: 1000,
         currency: "INR",
         receipt: req.params.reg_tempno,
         payment_capture: '0'
