@@ -356,7 +356,12 @@ app.get('/downloadapp/:pay_id', (req, res) => {
                                         },
                                         "footer": {
                                             "height": "10mm"
-                                        }
+                                        },
+                                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                                     }
 
                                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -447,7 +452,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -488,7 +498,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -529,7 +544,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -570,7 +590,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -611,7 +636,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
@@ -653,7 +683,12 @@ app.post('/download', (req, res) => {
                         },
                         "footer": {
                             "height": "10mm"
-                        }
+                        },
+                        childProcessOptions: {
+    env: {
+      OPENSSL_CONF: '/dev/null',
+    },
+  }
                     }
 
                     pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
