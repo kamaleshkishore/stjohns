@@ -430,8 +430,8 @@ app.post('/download', (req, res) => {
     const dob = req.body.dob.split('-').reverse().join('/');
 
     console.log("im body", req.body)
-    console.log(typeof regno)
-    if (regno == "2020057") {
+    //console.log(typeof regno)
+    /*if (regno == "2020057") {
         userMainData.find({ "app_appregnumber": regno, "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
             if (err) {
                 res.send('you are not registered')
@@ -662,7 +662,7 @@ app.post('/download', (req, res) => {
             }
         });
 
-    } else {
+    } else {*/
         //userMainData.find({ "app_appregnumber": regno, "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
           userMainData.find({ "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
             if (err) {
@@ -709,7 +709,7 @@ app.post('/download', (req, res) => {
                 })
             }
         });
-    }
+    //}
 
 
 });
