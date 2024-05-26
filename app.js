@@ -426,7 +426,7 @@ app.get('/download', (req, res) => {
 
 app.post('/download', (req, res) => {
     const phoneno = req.body.phoneno;
-    const regno = req.body.regno;
+    //const regno = req.body.regno;
     const dob = req.body.dob.split('-').reverse().join('/');
 
     console.log("im body", req.body)
@@ -663,7 +663,8 @@ app.post('/download', (req, res) => {
         });
 
     } else {
-        userMainData.find({ "app_appregnumber": regno, "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
+        //userMainData.find({ "app_appregnumber": regno, "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
+          userMainData.find({ "app_mobileno": phoneno, "app_birth": dob }, function (err, optresponse) {
             if (err) {
                 res.send('you are not registered')
             }
