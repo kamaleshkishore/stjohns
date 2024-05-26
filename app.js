@@ -701,11 +701,17 @@ app.post('/download', (req, res) => {
   }
                     }
 
-                    pdf.create(html, config).toFile('./Application.pdf', function (err, resp) {
-                        if (err) return console.log(err);
-                        // console.log(resp);
-                        res.download('./Application.pdf')
-                    });
+                    
+                    pdf.create(html, config).toStream((err, stream) => {
+                        if (err) {
+                            console.log('Error on pdf create:', err);
+                            return res.status(500).send('Error generating PDF');
+                        }
+                        res.setHeader('Content-type', 'application/pdf');
+                        res.setHeader('Content-Disposition', 'attachment; filename="Application.pdf"');
+                        stream.pipe(res);
+                    }
+                    );
                 })
             }
         });
